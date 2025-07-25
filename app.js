@@ -25,3 +25,7 @@ function generateQRCode() {
     qrContainer.appendChild(canvas);
   });
 }
+
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+}

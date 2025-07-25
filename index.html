@@ -7,15 +7,22 @@
   <title>Dodo Speaker Share</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Dodo Speaker Share</h1>
+  <div class="container">
+    <h1>Dodo Speaker 🔊</h1>
 
-  <button onclick="scanBluetooth()">🔊 Scan Bluetooth</button>
-  <button onclick="share()">📤 Share</button>
-  <button onclick="generateQRCode()">🔳 Show QR Code</button>
+    <div class="buttons">
+      <button onclick="scanBluetooth()">🔎 Scan Bluetooth</button>
+      <button onclick="share()">📤 Share</button>
+      <button onclick="generateQRCode()">🔳 Show QR Code</button>
+    </div>
 
-  <div id="qr"></div>
+    <div id="qr"></div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="app.js"></script>
