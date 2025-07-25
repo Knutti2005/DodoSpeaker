@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share & Connect</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; }
+        button { margin: 1em 0; padding: 0.5em 1em; }
+        canvas { margin-top: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Device Share & Connect</h1>
+    <button onclick="sharePage()">📤 Share This Page</button>
+    <button onclick="generateQRCode()">🔳 Generate QR Code</button>
+    <button onclick="scanBluetooth()">🔍 Scan Bluetooth</button>
+    <div id="qrCode"></div>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: "Check out this page:",
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("Web Share API not supported on this browser.");
+            }
+        }
+
+        function generateQRCode() {
+            const qrContainer = document.getElementById('qrCode');
+            qrContainer.innerHTML = '';
+            QRCode.toCanvas(document.createElement('canvas'), window.location.href, function (error, canvas) {
+                if (error) console.error(error);
+                else qrContainer.appendChild(canvas);
+            });
+        }
+
+        async function scanBluetooth() {
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true
+                });
+                alert("Connected to device: " + device.name);
+            } catch (error) {
+                alert("Bluetooth error: " + error);
+            }
+        }
+    </script>
+</body>
+</html>
